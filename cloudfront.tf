@@ -1,50 +1,50 @@
-# resource "aws_cloudfront_distribution" "mycloud" {
-#     enabled = true
-#     origin {
-#       domain_name = aws_lb.mybalancer.dns_name
-#       origin_id = aws_lb.mybalancer.dns_name
+resource "aws_cloudfront_distribution" "mycloud" {
+    enabled = true
+    origin {
+      domain_name = aws_lb.mybalancer.dns_name
+      origin_id = aws_lb.mybalancer.dns_name
 
-#       custom_origin_config {
-#         http_port = "80"
-#         https_port = "443"
-#         origin_protocol_policy = "http-only"
-#         origin_ssl_protocols = ["TLSv1.2"]
-#       }
+      custom_origin_config {
+        http_port = "80"
+        https_port = "443"
+        origin_protocol_policy = "http-only"
+        origin_ssl_protocols = ["TLSv1.2"]
+      }
     
-#     }
-#     default_cache_behavior {
+    }
+    default_cache_behavior {
       
     
-#     allowed_methods        = ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"]
-#     cached_methods         = ["GET", "HEAD", "OPTIONS"]
-#     target_origin_id       = aws_lb.mybalancer.dns_name
-#     viewer_protocol_policy = "redirect-to-https"
+    allowed_methods        = ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"]
+    cached_methods         = ["GET", "HEAD", "OPTIONS"]
+    target_origin_id       = aws_lb.mybalancer.dns_name
+    viewer_protocol_policy = "redirect-to-https"
      
-#     forwarded_values {
-#       headers      = []
-#       query_string = true
+    forwarded_values {
+      headers      = []
+      query_string = true
 
-#       cookies {
-#         forward = "all"
-#       }
-#     }
+      cookies {
+        forward = "all"
+      }
+    }
     
-#     }
+    }
 
-#   restrictions {
-#     geo_restriction {
-#       restriction_type = "whitelist"
-#       locations        = ["IN", "US", "CA"]
-#     }
-#   }
+  restrictions {
+    geo_restriction {
+      restriction_type = "whitelist"
+      locations        = ["IN", "US", "CA"]
+    }
+  }
 
-# tags = {
-#   "name" = "mycloud"
-# }
+tags = {
+  "name" = "mycloud"
+}
 
 
-#   viewer_certificate {
-#     cloudfront_default_certificate = true
-#   }
-# }
+  viewer_certificate {
+    cloudfront_default_certificate = true
+  }
+}
 

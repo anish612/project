@@ -1,4 +1,5 @@
 resource "aws_cloudfront_distribution" "mycloud" {
+  web_acl_id = aws_wafv2_web_acl.seasia.arn
     enabled = true
     origin {
       domain_name = aws_lb.mybalancer.dns_name
